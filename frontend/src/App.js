@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Link
+import { BrowserRouter as Router, Switch, Route
       } from "react-router-dom";
 import {MdComputer}  from 'react-icons/md'
 import './theme/App.css';
