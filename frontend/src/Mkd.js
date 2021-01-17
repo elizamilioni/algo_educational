@@ -7,6 +7,7 @@ function Mkd() {
     const [inputY, setInputY] = useState()
     const [times, setTimes] = useState()
     const [correctRes, setCorrectRes] = useState([])
+    const [correctTable, setCorrectTable] = useState([])
     const [intermediateV, setIntermediateV] = useState([])
     const [z, setZ] = useState()
     const [x, setX] = useState()
@@ -29,7 +30,7 @@ function Mkd() {
             cnt = cnt + 1
             setCorrectRes(correctRes.push([zc, xc, yc]))
         }
-        console.log(correctRes)
+        console.log('edw1', correctRes)
         if (times === String(cnt)) {
             setMessageA('a) Σωστό')
         } else {
@@ -48,8 +49,9 @@ function Mkd() {
         } else {
             setMessageB('β) Το z είναι λάθος')
         }
-        setCorrectRes([])
         setOpen(true)
+        setCorrectTable(correctRes)
+        setCorrectRes([])
     }
 
     return (
@@ -114,7 +116,7 @@ function Mkd() {
                     </button>
                 </form>
             </div>
-            <Popup open={open} onClose={() => {setOpen(false); setMessageA(''); setMessageB('')}}>
+            <Popup open={open} onClose={() => {setOpen(false); setMessageA(''); setMessageB(''); setCorrectTable([])}}>
                 <div style={{borderStyle: 'solid', backgroundColor: 'gray', height: '120px', width: '200px'}}>
                     <p>{messageA} </p>
                     <p>{messageB} </p>
@@ -134,14 +136,13 @@ function Mkd() {
                             <th> x </th>
                             <th> y </th>
                         </tr>
-                        {correctRes.map((row, i) => {
-                            console.log('ei', row) (
-                            // <tr>
-                            //     <td> {row[0]} </td>
-                            //     <td> {row[1]} </td>
-                            //     <td> {row[2]} </td>
-                            // </tr>
-                        )})}
+                        {correctTable.map((row, i) => (
+                            <tr>
+                                <td key={i}> {row[0]} </td>
+                                <td key={i+1}> {row[1]} </td>
+                                <td key={i+2}> {row[2]} </td>
+                            </tr>
+                        ))}
                     </table>                     
                 </div>
             </Popup>
